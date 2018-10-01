@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Starter-Kit-2018
 
 
@@ -32,3 +33,6 @@ On the root of this project run on your terminal (if you want you can do this wi
 **Start the server**
 
   npm run watch
+=======
+# React-RealEstateConcept
+>>>>>>> b16aee19e04db43ff28d0cc55eba821ab8e20346
