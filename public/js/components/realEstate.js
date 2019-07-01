@@ -1,6 +1,328 @@
 webpackJsonp([0],{
 
-/***/ 100:
+/***/ 101:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Filter = function (_Component) {
+    _inherits(Filter, _Component);
+
+    function Filter() {
+        _classCallCheck(this, Filter);
+
+        var _this = _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).call(this));
+
+        _this.state = {
+            name: 'Cesar'
+        };
+        _this.city = _this.city.bind(_this);
+        _this.isEmpty = _this.isEmpty.bind(_this);
+        _this.homeTypes = _this.homeTypes.bind(_this);
+        _this.bedrooms = _this.bedrooms.bind(_this);
+        return _this;
+    }
+    //see component life cycle for more 
+    // will run before runder
+
+
+    _createClass(Filter, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.props.populateForms();
+        }
+    }, {
+        key: 'isEmpty',
+        value: function isEmpty(obj) {
+            for (var prop in obj) {
+                return false;
+            }
+            return true;
+        }
+    }, {
+        key: 'city',
+        value: function city() {
+            if (!this.isEmpty(this.props.globalState.populateFormsData)) {
+                var cities = this.props.globalState.populateFormsData.cities;
+                return cities.map(function (item) {
+                    return _react2.default.createElement(
+                        'option',
+                        { key: item, value: item },
+                        item
+                    );
+                });
+            }
+        }
+    }, {
+        key: 'homeTypes',
+        value: function homeTypes() {
+            if (!this.isEmpty(this.props.globalState.populateFormsData)) {
+                var homeTypes = this.props.globalState.populateFormsData.homeTypes;
+                return homeTypes.map(function (item) {
+                    return _react2.default.createElement(
+                        'option',
+                        { key: item, value: item },
+                        item
+                    );
+                });
+            }
+        }
+    }, {
+        key: 'bedrooms',
+        value: function bedrooms() {
+            if (!this.isEmpty(this.props.globalState.populateFormsData)) {
+                var bedrooms = this.props.globalState.populateFormsData.bedrooms;
+                return bedrooms.map(function (item) {
+                    return _react2.default.createElement(
+                        'option',
+                        { key: item, value: item },
+                        item,
+                        '+ Bedrooms'
+                    );
+                });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'section',
+                { id: 'filter' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'insideFilter' },
+                    _react2.default.createElement(
+                        'h4',
+                        null,
+                        'Filter'
+                    ),
+                    _react2.default.createElement(
+                        'label',
+                        { htmlFor: 'city' },
+                        'City'
+                    ),
+                    _react2.default.createElement(
+                        'select',
+                        { name: 'city', className: 'filters city', onChange: this.props.change },
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'All' },
+                            'All'
+                        ),
+                        this.city()
+                    ),
+                    _react2.default.createElement(
+                        'label',
+                        { htmlFor: 'homeType' },
+                        'Home Type'
+                    ),
+                    _react2.default.createElement(
+                        'select',
+                        { name: 'homeType', className: 'filters homeType', onChange: this.props.change },
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'All' },
+                            'All Homes'
+                        ),
+                        this.homeTypes()
+                    ),
+                    _react2.default.createElement(
+                        'label',
+                        { htmlFor: 'bedrooms' },
+                        'Bedrooms'
+                    ),
+                    _react2.default.createElement(
+                        'select',
+                        { name: 'bedrooms', className: 'filters bedrooms', onChange: this.props.change },
+                        this.bedrooms()
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'filters price' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'title' },
+                            ' Price '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', value: this.props.globalState.min_price, name: 'min_price', className: 'min-price', onChange: this.props.change }),
+                        _react2.default.createElement('input', { type: 'text', value: this.props.globalState.max_price, name: 'max_price', className: 'max-price', onChange: this.props.change })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'filters floor-space' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'title' },
+                            ' Floor Space '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', value: this.props.globalState.min_floor_space, name: 'min_floor_space', className: 'min-floor-space', onChange: this.props.change }),
+                        _react2.default.createElement('input', { type: 'text', value: this.props.globalState.max_floor_space, name: 'max_floor_space', className: 'max-floor-space', onChange: this.props.change })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'filters extras' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'title' },
+                            'Extras'
+                        ),
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: 'extras' },
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                ' Elevator '
+                            ),
+                            _react2.default.createElement('input', { name: 'elevator', value: 'elevator', type: 'checkbox', onChange: this.props.change })
+                        ),
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: 'extras' },
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                ' Swimming Pool '
+                            ),
+                            _react2.default.createElement('input', { name: 'swimming_pool', value: 'swimming_pool', type: 'checkbox', onChange: this.props.change })
+                        ),
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: 'extras' },
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                ' Finished Basement '
+                            ),
+                            _react2.default.createElement('input', { name: 'finished_basement', value: 'finished_basement', type: 'checkbox', onChange: this.props.change })
+                        ),
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: 'extras' },
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                'Gym'
+                            ),
+                            _react2.default.createElement('input', { name: 'gym', value: 'gym', type: 'checkbox', onChange: this.props.change })
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Filter;
+}(_react.Component);
+
+exports.default = Filter;
+
+/***/ }),
+
+/***/ 102:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Header = function (_Component) {
+    _inherits(Header, _Component);
+
+    function Header() {
+        _classCallCheck(this, Header);
+
+        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
+
+        _this.state = {
+            name: 'Cesar'
+        };
+        return _this;
+    }
+
+    _createClass(Header, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'header',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { className: 'logo' },
+                    ' logo '
+                ),
+                _react2.default.createElement(
+                    'nav',
+                    null,
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#' },
+                        'create ads'
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#' },
+                        'About us'
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#' },
+                        'log in'
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#', className: 'register-btn' },
+                        'Register'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Header;
+}(_react.Component);
+
+exports.default = Header;
+
+/***/ }),
+
+/***/ 103:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -361,72 +683,73 @@ exports.default = Listings;
 
 /***/ }),
 
-/***/ 101:
+/***/ 104:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 var listingsData = [{
-    address: '20-34 twotop ave',
-    city: 'Downey',
-    state: 'CA',
-    rooms: 1,
-    price: 30000,
-    floorSpace: 2000,
-    extras: ['gym'],
-    homeType: 'Ranch',
-    image: 'https://i.ytimg.com/vi/J4rBDsimsmQ/maxresdefault.jpg'
+  address: "20-34 twotop ave",
+  city: "Downey",
+  state: "CA",
+  rooms: 1,
+  price: 30000,
+  floorSpace: 2000,
+  extras: ["gym"],
+  homeType: "Ranch",
+  image: "https://imgur.com/vOHOeRv.jpg"
 }, {
-    address: '20-34 twotop ave',
-    city: 'New York',
-    state: 'NY',
-    rooms: 2,
-    price: 24000,
-    floorSpace: 2500,
-    extras: ['elevator', 'finished basement'],
-    homeType: 'Ranch',
-    image: 'https://i.ytimg.com/vi/J4rBDsimsmQ/maxresdefault.jpg'
+  address: "20-34 twotop ave",
+  city: "New York",
+  state: "NY",
+  rooms: 2,
+  price: 24000,
+  floorSpace: 2500,
+  extras: ["elevator", "finished basement"],
+  homeType: "Ranch",
+  image: "https://imgur.com/c7PD8oJ.jpg"
 }, {
-    address: '20-34 twotop ave',
-    city: 'Miami',
-    state: 'FL',
-    rooms: 5,
-    price: 80000,
-    floorSpace: 3000,
-    extras: ['gym', 'swimming pool'],
-    homeType: 'Apartment',
-    image: 'https://i.ytimg.com/vi/J4rBDsimsmQ/maxresdefault.jpg'
+  address: "20-34 twotop ave",
+  city: "Miami",
+  state: "FL",
+  rooms: 5,
+  price: 80000,
+  floorSpace: 3000,
+  extras: ["gym", "swimming pool"],
+  homeType: "Apartment",
+  image: "https://imgur.com/SHLn2OJ.jpg"
 }, {
-    address: '20-34 twotop ave',
-    city: 'Tuscan',
-    state: 'AZ',
-    rooms: 9,
-    price: 130000,
-    floorSpace: 12000,
-    extras: ['elevator', 'gym', 'finished basement', 'swimming pool'],
-    homeType: 'Apartment',
-    image: 'https://i.ytimg.com/vi/J4rBDsimsmQ/maxresdefault.jpg'
+  address: "20-34 twotop ave",
+  city: "Tuscan",
+  state: "AZ",
+  rooms: 9,
+  price: 130000,
+  floorSpace: 12000,
+  extras: ["elevator", "gym", "finished basement", "swimming pool"],
+  homeType: "Apartment",
+  image: "https://imgur.com/tnsUm8W.jpg"
 }, {
-    address: '20-34 twotop ave',
-    city: 'Downey',
-    state: 'CA',
-    rooms: 9,
-    price: 130000,
-    floorSpace: 12000,
-    extras: ['elevator', 'gym', 'finished basement', 'swimming pool'],
-    homeType: 'House',
-    image: 'https://i.ytimg.com/vi/J4rBDsimsmQ/maxresdefault.jpg'
+  address: "20-34 twotop ave",
+  city: "Downey",
+  state: "CA",
+  rooms: 9,
+
+  price: 130000,
+  floorSpace: 12000,
+  extras: ["elevator", "gym", "finished basement", "swimming pool"],
+  homeType: "House",
+  image: "https://imgur.com/ntA4FIo.jpg"
 }];
 
 exports.default = listingsData;
 
 /***/ }),
 
-/***/ 103:
+/***/ 107:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -438,23 +761,23 @@ var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(33);
+var _reactDom = __webpack_require__(34);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Header = __webpack_require__(99);
+var _Header = __webpack_require__(102);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Filter = __webpack_require__(98);
+var _Filter = __webpack_require__(101);
 
 var _Filter2 = _interopRequireDefault(_Filter);
 
-var _Listings = __webpack_require__(100);
+var _Listings = __webpack_require__(103);
 
 var _Listings2 = _interopRequireDefault(_Listings);
 
-var _listingsData = __webpack_require__(101);
+var _listingsData = __webpack_require__(104);
 
 var _listingsData2 = _interopRequireDefault(_listingsData);
 
@@ -677,328 +1000,6 @@ var app = document.getElementById('app');
 
 _reactDom2.default.render(_react2.default.createElement(App, null), app);
 
-/***/ }),
-
-/***/ 98:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Filter = function (_Component) {
-    _inherits(Filter, _Component);
-
-    function Filter() {
-        _classCallCheck(this, Filter);
-
-        var _this = _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).call(this));
-
-        _this.state = {
-            name: 'Cesar'
-        };
-        _this.city = _this.city.bind(_this);
-        _this.isEmpty = _this.isEmpty.bind(_this);
-        _this.homeTypes = _this.homeTypes.bind(_this);
-        _this.bedrooms = _this.bedrooms.bind(_this);
-        return _this;
-    }
-    //see component life cycle for more 
-    // will run before runder
-
-
-    _createClass(Filter, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            this.props.populateForms();
-        }
-    }, {
-        key: 'isEmpty',
-        value: function isEmpty(obj) {
-            for (var prop in obj) {
-                return false;
-            }
-            return true;
-        }
-    }, {
-        key: 'city',
-        value: function city() {
-            if (!this.isEmpty(this.props.globalState.populateFormsData)) {
-                var cities = this.props.globalState.populateFormsData.cities;
-                return cities.map(function (item) {
-                    return _react2.default.createElement(
-                        'option',
-                        { key: item, value: item },
-                        item
-                    );
-                });
-            }
-        }
-    }, {
-        key: 'homeTypes',
-        value: function homeTypes() {
-            if (!this.isEmpty(this.props.globalState.populateFormsData)) {
-                var homeTypes = this.props.globalState.populateFormsData.homeTypes;
-                return homeTypes.map(function (item) {
-                    return _react2.default.createElement(
-                        'option',
-                        { key: item, value: item },
-                        item
-                    );
-                });
-            }
-        }
-    }, {
-        key: 'bedrooms',
-        value: function bedrooms() {
-            if (!this.isEmpty(this.props.globalState.populateFormsData)) {
-                var bedrooms = this.props.globalState.populateFormsData.bedrooms;
-                return bedrooms.map(function (item) {
-                    return _react2.default.createElement(
-                        'option',
-                        { key: item, value: item },
-                        item,
-                        '+ Bedrooms'
-                    );
-                });
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'section',
-                { id: 'filter' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'insideFilter' },
-                    _react2.default.createElement(
-                        'h4',
-                        null,
-                        'Filter'
-                    ),
-                    _react2.default.createElement(
-                        'label',
-                        { htmlFor: 'city' },
-                        'City'
-                    ),
-                    _react2.default.createElement(
-                        'select',
-                        { name: 'city', className: 'filters city', onChange: this.props.change },
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'All' },
-                            'All'
-                        ),
-                        this.city()
-                    ),
-                    _react2.default.createElement(
-                        'label',
-                        { htmlFor: 'homeType' },
-                        'Home Type'
-                    ),
-                    _react2.default.createElement(
-                        'select',
-                        { name: 'homeType', className: 'filters homeType', onChange: this.props.change },
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'All' },
-                            'All Homes'
-                        ),
-                        this.homeTypes()
-                    ),
-                    _react2.default.createElement(
-                        'label',
-                        { htmlFor: 'bedrooms' },
-                        'Bedrooms'
-                    ),
-                    _react2.default.createElement(
-                        'select',
-                        { name: 'bedrooms', className: 'filters bedrooms', onChange: this.props.change },
-                        this.bedrooms()
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'filters price' },
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'title' },
-                            ' Price '
-                        ),
-                        _react2.default.createElement('input', { type: 'text', value: this.props.globalState.min_price, name: 'min_price', className: 'min-price', onChange: this.props.change }),
-                        _react2.default.createElement('input', { type: 'text', value: this.props.globalState.max_price, name: 'max_price', className: 'max-price', onChange: this.props.change })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'filters floor-space' },
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'title' },
-                            ' Floor Space '
-                        ),
-                        _react2.default.createElement('input', { type: 'text', value: this.props.globalState.min_floor_space, name: 'min_floor_space', className: 'min-floor-space', onChange: this.props.change }),
-                        _react2.default.createElement('input', { type: 'text', value: this.props.globalState.max_floor_space, name: 'max_floor_space', className: 'max-floor-space', onChange: this.props.change })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'filters extras' },
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'title' },
-                            'Extras'
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            { htmlFor: 'extras' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                ' Elevator '
-                            ),
-                            _react2.default.createElement('input', { name: 'elevator', value: 'elevator', type: 'checkbox', onChange: this.props.change })
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            { htmlFor: 'extras' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                ' Swimming Pool '
-                            ),
-                            _react2.default.createElement('input', { name: 'swimming_pool', value: 'swimming_pool', type: 'checkbox', onChange: this.props.change })
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            { htmlFor: 'extras' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                ' Finished Basement '
-                            ),
-                            _react2.default.createElement('input', { name: 'finished_basement', value: 'finished_basement', type: 'checkbox', onChange: this.props.change })
-                        ),
-                        _react2.default.createElement(
-                            'label',
-                            { htmlFor: 'extras' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                'Gym'
-                            ),
-                            _react2.default.createElement('input', { name: 'gym', value: 'gym', type: 'checkbox', onChange: this.props.change })
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Filter;
-}(_react.Component);
-
-exports.default = Filter;
-
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Header = function (_Component) {
-    _inherits(Header, _Component);
-
-    function Header() {
-        _classCallCheck(this, Header);
-
-        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
-
-        _this.state = {
-            name: 'Cesar'
-        };
-        return _this;
-    }
-
-    _createClass(Header, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'header',
-                null,
-                _react2.default.createElement(
-                    'div',
-                    { className: 'logo' },
-                    ' logo '
-                ),
-                _react2.default.createElement(
-                    'nav',
-                    null,
-                    _react2.default.createElement(
-                        'a',
-                        { href: '#' },
-                        'create ads'
-                    ),
-                    _react2.default.createElement(
-                        'a',
-                        { href: '#' },
-                        'About us'
-                    ),
-                    _react2.default.createElement(
-                        'a',
-                        { href: '#' },
-                        'log in'
-                    ),
-                    _react2.default.createElement(
-                        'a',
-                        { href: '#', className: 'register-btn' },
-                        'Register'
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Header;
-}(_react.Component);
-
-exports.default = Header;
-
 /***/ })
 
-},[103]);
+},[107]);
